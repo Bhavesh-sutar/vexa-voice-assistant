@@ -1,9 +1,6 @@
-# features/tell_joke.py
 import pyjokes
 from core.speaker import speak
 
-def tell_joke():
-    
+def tell_joke(context):
     joke = pyjokes.get_joke()
     speak(joke)
-    print("")

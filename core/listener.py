@@ -1,25 +1,38 @@
-# core/listener.py
 import speech_recognition as sr
+from core.logger import logger
 
-def take_command():
-    recognizer = sr.Recognizer()
-    try:
-        with sr.Microphone() as source:
-            print("Listening...")
-            recognizer.pause_threshold = 1  # Wait a bit for the user to speak
-            audio = recognizer.listen(source)
-    except KeyboardInterrupt:
-        print("Program Terminated by user(Keyboard Interrupt)")
-        exit()
+recognizer = sr.Recognizer()
+MAX_RETRIES = 2
 
-    try:
-        print("Recognizing...")
-        query = recognizer.recognize_google(audio, language='en-in')
-        print(f"User said: {query}")
-        return query.lower()
-    except sr.UnknownValueError:
-        print("Sorry, I didn’t catch that.\n")
-        return ""
-    except sr.RequestError:
-        print("Could not connect to the speech recognition service.\n")
-        return ""
+def take_command(skip_calibration=False):
+    for attempt in range(MAX_RETRIES + 1):
+        try:
+            with sr.Microphone() as source:
+                logger.info("Listening...")
+                if not skip_calibration:
+                    recognizer.adjust_for_ambient_noise(source, duration=0.5)
+                recognizer.pause_threshold = 0.5
+                audio = recognizer.listen(source, timeout=5)
+
+            logger.info("Recognizing speech...")
+            query = recognizer.recognize_google(audio, language="en-in")
+            logger.info(f"Recognized: {query}")
+            return query.lower()
+
+        except sr.UnknownValueError:
+            logger.warning(f"Could not understand speech (attempt {attempt+1})")
+
+        except sr.WaitTimeoutError:
+            logger.info("User was silent")
+            return ""
+
+        except sr.RequestError as e:
+            logger.error(f"Speech service error: {e}")
+            return ""
+
+        except Exception as e:
+            logger.error(f"Microphone error: {e}")
+            return ""
+
+    logger.warning("Max retries exceeded")
+    return ""

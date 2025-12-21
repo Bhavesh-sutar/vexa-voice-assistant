@@ -3,20 +3,20 @@ import os
 from core.speaker import speak
 
 # Modify these paths according to your system
-apps = {
-    "chrome": r"C:\Program Files\Google\Chrome\Application\chrome.exe",  # Needs path
-    "notepad": "notepad.exe",                                            # No path needed
-    "vs code": r"C:\Users\91835\AppData\Local\Programs\Microsoft VS Code\Code.exe",  # Needs path
-    "calculator": "calc.exe"                                             # No path needed
+APPS = {
+    "chrome": r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+    "notepad": "notepad.exe",
+    "vs code": r"C:\Users\91835\AppData\Local\Programs\Microsoft VS Code\Code.exe",
+    "calculator": "calc.exe"
 }
 
 
-def launch_application(query):
-    for app in apps:
+def launch_application(context):
+    query = context.raw_query
+    for app, path in APPS.items():
         if app in query:
-            app_path = apps[app]
             speak(f"Launching {app}")
-            os.startfile(app_path)
-            print("")
+            os.startfile(path)
             return
-    speak("Sorry, I couldn't find that application.")
+        
+    speak("I couldn't find that application.")

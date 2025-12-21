@@ -1,14 +1,15 @@
-# features/get_datetime.py
 from datetime import datetime
 from core.speaker import speak
+from core.intents import Intent
 
-def tell_date_time(query):
+def tell_date_time(context):
+    
     now = datetime.now()
     time = now.strftime("%I:%M %p")
     date = now.strftime("%A, %B %d, %Y")
-    if "date" in query and "time" in query:
-        speak(f"Today is {date} and the time is {time}\n")
-    elif "time" in query:
-        speak(f"The time is {time}\n")
-    elif "date" in query:
-        speak(f"Today is {date}\n")
+    
+    if context.intent == Intent.TIME:
+        speak(f"The time is {time}.")
+    elif context.intent == Intent.DATE:
+        speak(f"Today is {date}.")
+        
