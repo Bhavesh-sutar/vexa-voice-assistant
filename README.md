@@ -80,13 +80,14 @@ Feature Execution
 - Unified command execution
 - Context-based command interface
 
-### Phase 3 – Feature Hardening (Implemented)
+### Phase 2.5 – Feature Hardening (Implemented)
 
 - Multi-turn notes using pending intent
 - Note cancellation handling
 - Safer destructive actions
+- Coding setup automation
 
-### Phase 4 – Advanced Behavior (Planned)
+### Phase 3 – Advanced Behavior (Planned)
 
 - Interruptible speech
 - Event-driven / async execution
