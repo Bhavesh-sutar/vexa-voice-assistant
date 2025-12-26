@@ -10,4 +10,5 @@ class Intent(Enum):
   READ_NOTES = "read_notes"
   CLEAR_NOTES = "clear_notes"
   EXIT = "exit"
+  RUN_CODING_SETUP = "run_coding_setup"
   UNKNOWN = "unknown"

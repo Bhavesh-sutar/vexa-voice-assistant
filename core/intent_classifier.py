@@ -23,7 +23,9 @@ def classify_intent(text: str) -> Intent:
         return Intent.READ_NOTES
     if "clear" in text or "delete notes" in text:
         return Intent.CLEAR_NOTES
-    if text in ("exit", "quit", "stop"):
+    if "coding setup" in text:
+        return Intent.RUN_CODING_SETUP
+    if text in ("exit", "quit", "stop", "shutdown"):
         return Intent.EXIT
 
     logger.warning(f"Intent not matched: {text}")

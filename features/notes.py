@@ -1,6 +1,6 @@
 import os
 from datetime import datetime
-from core.listener import take_command
+# from core.listener import take_command
 from core.speaker import speak
 from core.confirmation import voice_confirm
 from core.logger import logger
@@ -9,19 +9,25 @@ NOTES_FILE = os.path.join(
     os.path.expanduser("~"), "Desktop", "vexa_notes.txt"
 )          
 
-def write_note(context):
-    speak("What should I write?")
-    content = take_command()
-    
-    if not content:
-        speak("No note was saved.")
-        return 
-    
+def save_note(content: str):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    logger.info("Saving note with timestamp.")
     with open(NOTES_FILE, "a", encoding="utf-8") as f:
-        f.write(f"[{timestamp}] {content}")
+        f.write(f"[{timestamp}] {content}\n")
+
+# def write_note(context):
+#     speak("What should I write?")
+#     content = take_command()
+    
+#     if not content:
+#         speak("No note was saved.")
+#         return 
+    
+#     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+#     with open(NOTES_FILE, "a", encoding="utf-8") as f:
+#         f.write(f"[{timestamp}] {content}")
         
-    speak("Your note has been saved.")
+#     speak("Your note has been saved.")
     
 def read_notes(context):
     if not os.path.exists(NOTES_FILE):

@@ -3,7 +3,7 @@
 Vexa is a **Python-based voice assistant** designed with a **modular, intent-driven architecture**.
 The project focuses on **clean design, robustness, and extensibility**, rather than just adding features.
 
-This repository represents the project up to **Phase 2 (Core Architecture Stabilization)**.
+This repository represents the project up to Phase 3 (Stateful Commands & Automation Workflows).
 
 ## Key Objectives
 
@@ -59,6 +59,8 @@ Feature Execution
   - Write notes
   - Read recent notes
   - Clear notes with confirmation
+- Automation workflows:
+  - Coding setup (launches development tools and workspace)
 
 ## Current Development Phases
 
@@ -78,15 +80,14 @@ Feature Execution
 - Unified command execution
 - Context-based command interface
 
-### Phase 2.5 – Feature Hardening (In Progress)
+### Phase 3 – Feature Hardening (Implemented)
 
-- Improving feature consistency
-- Safer command execution
-- Notes system stabilization
+- Multi-turn notes using pending intent
+- Note cancellation handling
+- Safer destructive actions
 
-### Phase 3 – Advanced Behavior (Planned)
+### Phase 4 – Advanced Behavior (Planned)
 
-- Multi-turn conversations (pending intent handling)
 - Interruptible speech
 - Event-driven / async execution
 - Context-aware AI fallback (optional)
@@ -97,12 +98,18 @@ Feature Execution
 vexa/
 │
 ├── core/
-│   ├── listener.py
-│   ├── speaker.py
-│   ├── normalizer.py
+|   ├── command_registry.py
+|   ├── confirmation.py
+│   ├── context.py
 │   ├── intent_classifier.py
+│   ├── intents.py
+│   ├── listener.py
+│   ├── logger.py
+│   ├── normalizer.py
 │   ├── processor.py
-│   └── context.py
+│   ├── session_context.py
+│   ├── speaker.py
+│   └── utils.py
 │
 ├── features/
 │   ├── open_web.py
@@ -110,7 +117,10 @@ vexa/
 │   ├── get_datetime.py
 │   ├── tell_joke.py
 │   └── notes.py
-│
+|
+├── setups/
+│   └── coding_setup.py
+|
 ├── main.py
 ├── requirements.txt
 └── README.md
@@ -139,7 +149,7 @@ python main.py
 
 ## Limitations (Current)
 
-- Commands are single-turn
+- Most commands are single-turn (notes support multi-turn interaction)
 - No async or interrupt handling yet
 - Entity extraction is basic
 - Notes are stored locally in a text file
@@ -148,7 +158,7 @@ These are **intentional trade-offs** to keep the core stable before moving to Ph
 
 ## Roadmap
 
-- Multi-turn notes using pending intent
+- Generalized multi-turn command framework
 - Improved entity extraction
 - Interruptible speech
 - Async execution loop
