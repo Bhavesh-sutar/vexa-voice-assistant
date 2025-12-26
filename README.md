@@ -3,7 +3,7 @@
 Vexa is a **Python-based voice assistant** designed with a **modular, intent-driven architecture**.
 The project focuses on **clean design, robustness, and extensibility**, rather than just adding features.
 
-This repository represents the project up to Phase 3 (Stateful Commands & Automation Workflows).
+This repository represents the project up to Phase 2.5 (Stateful Commands & Automation Workflows).
 
 ## Key Objectives
 
