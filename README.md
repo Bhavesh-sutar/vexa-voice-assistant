@@ -1,7 +1,3 @@
-Here's a simplified version:
-
----
-
 # Vexa – Modular Voice Assistant
 
 A Python voice assistant built with clean architecture and extensibility in mind.
