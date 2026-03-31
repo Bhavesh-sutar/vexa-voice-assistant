@@ -14,20 +14,6 @@ def save_note(content: str):
     logger.info("Saving note with timestamp.")
     with open(NOTES_FILE, "a", encoding="utf-8") as f:
         f.write(f"[{timestamp}] {content}\n")
-
-# def write_note(context):
-#     speak("What should I write?")
-#     content = take_command()
-    
-#     if not content:
-#         speak("No note was saved.")
-#         return 
-    
-#     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-#     with open(NOTES_FILE, "a", encoding="utf-8") as f:
-#         f.write(f"[{timestamp}] {content}")
-        
-#     speak("Your note has been saved.")
     
 def read_notes(context):
     if not os.path.exists(NOTES_FILE):

@@ -25,6 +25,8 @@ def classify_intent(text: str) -> Intent:
         return Intent.CLEAR_NOTES
     if "coding setup" in text:
         return Intent.RUN_CODING_SETUP
+    if "play" in text:
+        return Intent.PLAY_MUSIC
     if text in ("exit", "quit", "stop", "shutdown"):
         return Intent.EXIT
 
